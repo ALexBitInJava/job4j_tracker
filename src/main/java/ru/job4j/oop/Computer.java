@@ -11,6 +11,7 @@ public class Computer {
         System.out.println("SSD: " + ssd + " GD");
         System.out.println("Модель CPU: " + cpu);
     }
+
     public Computer(boolean multiMonitor, int ssd, String cpu) {
         this.multiMonitor = multiMonitor;
         this.cpu = cpu;
