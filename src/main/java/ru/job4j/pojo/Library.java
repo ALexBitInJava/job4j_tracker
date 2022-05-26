@@ -20,7 +20,7 @@ public class Library {
         arrayBooks[3] = rearrange;
         for (int i = 0; i < arrayBooks.length; i++) {
             Book book = arrayBooks[i];
-            if (book.getName().equals("Clean code")) {
+            if ("Clean code".equals(book.getName())) {
                 System.out.println("The book you were looking for: " + book.getName() + " and pages in it: " + book.getNumberOfPages());
             }
         }
