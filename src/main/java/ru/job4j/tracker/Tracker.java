@@ -43,11 +43,11 @@ public class Tracker {
         Item[] array = new Item[items.length];
         int size = 0;
         for (int i = 0; i < items.length; i++) {
-                array[i] = items[i];
-                if (array[i] != null && key.equals(array[i].getName())) {
-                    array[i].setName(key);
-                    size++;
-                }
+            array[i] = items[i];
+            if (array[i] != null && key.equals(array[i].getName())) {
+                array[i].setName(key);
+                size++;
+            }
         }
         array = Arrays.copyOf(array, size);
         return array;
