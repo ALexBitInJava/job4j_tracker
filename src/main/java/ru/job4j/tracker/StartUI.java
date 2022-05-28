@@ -57,7 +57,6 @@ public class StartUI {
                 } else {
                     System.out.println("Заявка с введенным id: " + id + " не найдена.");
                 }
-
             } else if (select == 5) {
                 System.out.println("=== Find items by name ===");
                 System.out.println("Enter name: ");
