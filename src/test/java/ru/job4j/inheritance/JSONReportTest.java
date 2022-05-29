@@ -30,6 +30,5 @@ public class JSONReportTest {
         String body = "Shine On You Crazy Diamond";
         String result = new JSONReport().generate(name, body);
         assertEquals(expected, result);
-        System.out.println(result);
     }
 }
