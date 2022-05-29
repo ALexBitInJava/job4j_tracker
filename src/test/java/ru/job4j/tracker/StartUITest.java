@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class StartUITest {
@@ -62,6 +61,8 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
+        LocalDateTime createdDate = LocalDateTime.of(2022, 05, 29, 23, 26, 00);
+        one.setDateTime(createdDate);
         Input in = new StubInput(
                 new String[] {"0", "test1", "1"}
         );
@@ -76,7 +77,7 @@ public class StartUITest {
                         + "0. Find items by name" + ln
                         + "1. Exit Program" + ln
                         + "=== Find items by name ===" + ln
-                        + "Item{id=1, name='test1', created=29-мая-воскресенье-2022 22:43:00}" + ln
+                        + "Item{id=1, name='test1', created=29-мая-воскресенье-2022 23:26:00}" + ln
                         + "Menu:" + ln
                         + "0. Find items by name" + ln
                         + "1. Exit Program" + ln
@@ -89,6 +90,8 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
+        LocalDateTime createdDate = LocalDateTime.of(2022, 05, 29, 23, 26, 00);
+        one.setDateTime(createdDate);
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(one.getId()), "1"}
         );
@@ -103,7 +106,7 @@ public class StartUITest {
                         + "0. Find items by id" + ln
                         + "1. Exit Program" + ln
                         + "=== Find item by id ===" + ln
-                        + "Item{id=1, name='test1', created=29-мая-воскресенье-2022 22:43:00}" + ln
+                        + "Item{id=1, name='test1', created=29-мая-воскресенье-2022 23:26:00}" + ln
                         + "Menu:" + ln
                         + "0. Find items by id" + ln
                         + "1. Exit Program" + ln
@@ -117,6 +120,9 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item one = tracker.add(new Item("test1"));
         Item two = tracker.add(new Item("test2"));
+        LocalDateTime createdDate = LocalDateTime.of(2022, 05, 29, 23, 26, 00);
+        one.setDateTime(createdDate);
+        two.setDateTime(createdDate);
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(one.getId()), "1", "0", String.valueOf(one.getId()), "1"}
         );
@@ -131,8 +137,8 @@ public class StartUITest {
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
                         + "=== Show all items ===" + ln
-                        + "Item{id=1, name='test1', created=29-мая-воскресенье-2022 22:43:00}" + ln
-                        + "Item{id=2, name='test2', created=29-мая-воскресенье-2022 22:43:00}" + ln
+                        + "Item{id=1, name='test1', created=29-мая-воскресенье-2022 23:26:00}" + ln
+                        + "Item{id=2, name='test2', created=29-мая-воскресенье-2022 23:26:00}" + ln
                         + "Menu:" + ln
                         + "0. Show all items" + ln
                         + "1. Exit Program" + ln
