@@ -1,6 +1,7 @@
 package ru.job4j.ex;
 
 public class NPEx {
+
     public static void main(String[] args) {
         String[] shops = new String[5];
         shops[0] = "Alex Golovin";
