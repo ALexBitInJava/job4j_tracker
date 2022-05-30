@@ -9,12 +9,12 @@ public class ExitAction implements UserAction {
 
     @Override
     public String name() {
-        return "ExitAction Program";
+        return "Exit Program";
     }
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        output.println("=== ExitAction Program ===");
+        output.println("=== Exit Program ===");
         return false;
     }
 }
