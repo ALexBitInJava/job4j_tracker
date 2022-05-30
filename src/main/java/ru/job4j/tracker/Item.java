@@ -7,7 +7,7 @@ public class Item {
     private int id;
     private String name;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
-    private LocalDateTime created = LocalDateTime.now();
+    private final LocalDateTime created = LocalDateTime.now();
 
     public Item() {
 
@@ -28,10 +28,6 @@ public class Item {
 
     public LocalDateTime getDateTime() {
         return created;
-    }
-
-    public void setDateTime(LocalDateTime created) {
-        this.created = created;
     }
 
     public void setId(int id) {
