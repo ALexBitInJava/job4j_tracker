@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class SingleTracker {
     private static SingleTracker instance = null;
+    private Tracker tracker = new Tracker();
 
     private SingleTracker() {
     }
@@ -14,8 +15,6 @@ public class SingleTracker {
         }
         return instance;
     }
-
-    private Tracker tracker = new Tracker();
 
     public Item add(Item item) {
         return tracker.add(item);
