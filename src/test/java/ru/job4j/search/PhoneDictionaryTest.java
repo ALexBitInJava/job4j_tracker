@@ -1,5 +1,6 @@
 package ru.job4j.search;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class PhoneDictionaryTest {
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
         ArrayList<Person> persons = phones.find("Max");
-        ArrayList<Person> empty = new ArrayList<>();
-        assertThat(empty, is(persons));
+        Assert.assertTrue(persons.isEmpty());
     }
 }
