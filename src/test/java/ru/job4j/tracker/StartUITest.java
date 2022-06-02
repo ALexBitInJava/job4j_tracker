@@ -41,9 +41,7 @@ public class StartUITest {
                 new String[]{"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
-        List<UserAction> actions = new ArrayList<>();
-        actions.add(new ReplaceAction(out));
-        actions.add(new ExitAction(out));
+        List<UserAction> actions = List.of(new CreateAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
@@ -74,9 +72,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", id, "1"}
         );
-        List<UserAction> actions = new ArrayList<>();
-        actions.add(new ReplaceAction(out));
-        actions.add(new ExitAction(out));
+        List<UserAction> actions = List.of(new DeleteAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertNull(tracker.findById(item.getId()));
     }
@@ -134,9 +130,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", "1"}
         );
-        List<UserAction> actions = new ArrayList<>();
-        actions.add(new ReplaceAction(out));
-        actions.add(new ExitAction(out));
+        List<UserAction> actions = List.of(new ShowAllAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -161,9 +155,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", one.getName(), "1"}
         );
-        List<UserAction> actions = new ArrayList<>();
-        actions.add(new ReplaceAction(out));
-        actions.add(new ExitAction(out));
+        List<UserAction> actions = List.of(new FindByNameAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -187,9 +179,8 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", String.valueOf(one.getId()), "1"}
         );
-        List<UserAction> actions = new ArrayList<>();
-        actions.add(new ReplaceAction(out));
-        actions.add(new ExitAction(out));
+        List<UserAction> actions = List.of(new FindByIdAction(out),
+        new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
