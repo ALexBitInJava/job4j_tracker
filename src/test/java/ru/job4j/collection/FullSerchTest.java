@@ -20,4 +20,5 @@ public class FullSerchTest {
         Set<String> expected = new HashSet<>(Arrays.asList("1", "2"));
         assertThat(FullSerch.exctraNumber(tasks), is(expected));
     }
+
 }
