@@ -1,9 +1,8 @@
 package ru.job4j.collection;
 
 import java.util.HashMap;
-import java.util.Map;
 
-public class PasspirtOffice {
+public class PassportOffice {
     private HashMap<String, Citizen> citizens = new HashMap<>();
 
     public boolean add(Citizen citizen) {
