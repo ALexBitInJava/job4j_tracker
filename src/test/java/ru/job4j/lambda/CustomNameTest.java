@@ -30,8 +30,8 @@ public class CustomNameTest {
     @Test
     public void whenExponentialFunctionThenExponentialResults() {
         CustomName function = new CustomName();
-        List<Double> result = function.diapason(4, 7, x -> Math.pow(x, 2));
-        List<Double> expected = Arrays.asList(16.0, 25.0, 36.0);
+        List<Double> result = function.diapason(4, 7, x -> Math.pow(2, x));
+        List<Double> expected = Arrays.asList(16.0, 32.0, 64.0);
         assertThat(result, is(expected));
     }
 
