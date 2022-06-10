@@ -12,22 +12,18 @@ public class StreamUsage {
             this.name = name;
             this.spent = spent;
         }
-
-        @Override
-        public String toString() {
-            return "Task{" + "name='" + name + '\'' + ", spent=" + spent + '}';
-        }
-        }
+    }
 
     public static void main(String[] args) {
-        List<Task> tasks = List.of(new Task("Bug #1", 100),
-                new Task("Task #2", 100),
-                new Task("Bug #3", 100));
-        List<Task> bugs = tasks.stream().filter(task -> task.name.contains("Bug")).toList();
-        bugs.forEach(System.out::println);
-
-        List<String> names = tasks.stream().map(task -> task.name).toList();
-        long total = tasks.stream().map(task -> task.spent).reduce(0L, Long::sum);
-        List<Task> bugs1 = tasks.stream().filter(task -> task.name.contains("Bug")).toList();
+        List<Task> tasks = List.of(
+                new Task("Bug #1", 10),
+                new Task("Task #2", 20),
+                new Task("Bug #3", 40)
+        );
+        tasks.stream()
+                .filter(task -> task.name.contains("Bug"))
+                .filter(task -> task.spent > 30)
+                .map(task -> task.name + " " + task.spent)
+                .forEach(System.out::println);
     }
 }
