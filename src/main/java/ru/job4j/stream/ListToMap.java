@@ -8,13 +8,10 @@ import java.util.stream.Collectors;
 public class ListToMap {
     public static Map<String, Student> convert(List<Student> list) {
         return list.stream()
-                .distinct()
                 .collect(Collectors.toMap(
                         Student::getSurname,
                         obj -> obj,
-                        (s, obj) ->  {
-                            return obj.equals(obj) ? s : obj;
-                        }, LinkedHashMap::new
+                        (first, second) -> first
                         ));
     }
 }
