@@ -31,7 +31,7 @@ public class Analyze {
                         Collectors.averagingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
-                .map(stringDoubleEntry -> new Tuple(stringDoubleEntry.getKey(), stringDoubleEntry.getValue()))
+                .map(e -> new Tuple(e.getKey(), e.getValue()))
                 .collect(Collectors.toList());
     }
 
@@ -47,11 +47,11 @@ public class Analyze {
     public static Tuple bestSubject(Stream<Pupil> stream) {
         return stream.flatMap(pupil ->  pupil.getSubjects()
                         .stream())
-                .collect(Collectors.groupingBy(Subject::getName, LinkedHashMap::new,
+                .collect(Collectors.groupingBy(Subject::getName,
                         Collectors.summingDouble(Subject::getScore)))
                 .entrySet()
                 .stream()
-                .map(stringDoubleEntry -> new Tuple(stringDoubleEntry.getKey(), stringDoubleEntry.getValue()))
+                .map(e -> new Tuple(e.getKey(), e.getValue()))
                 .max(Comparator.comparingDouble(Tuple::getScore))
                 .orElse(null);
     }
