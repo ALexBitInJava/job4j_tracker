@@ -20,15 +20,11 @@ public class StartUITest {
         );
         MemTracker tracker = new MemTracker();
         List<UserAction> actions = new ArrayList<>();
-        actions.add(new ExitAction());
+        actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
-                        "Menu:" + ln
-                                + "0. Exit Program" + ln
-                                + "Wrong input, you can select: 0 .. 0" + ln
-                                + "Menu:" + ln
-                                + "0. Exit Program" + ln
+                        "Wrong input, you can select: 0 .. 0" + ln
                                 + "=== Exit Program ===" + ln
                 )
         );
@@ -41,7 +37,7 @@ public class StartUITest {
                 new String[]{"0", "Item name", "1"}
         );
         MemTracker tracker = new MemTracker();
-        List<UserAction> actions = List.of(new CreateAction(out), new ExitAction());
+        List<UserAction> actions = List.of(new CreateAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
@@ -58,7 +54,7 @@ public class StartUITest {
         );
         List<UserAction> actions = new ArrayList<>();
         actions.add(new ReplaceAction(out));
-        actions.add(new ExitAction());
+        actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
@@ -72,7 +68,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", id, "1"}
         );
-        List<UserAction> actions = List.of(new DeleteAction(out), new ExitAction());
+        List<UserAction> actions = List.of(new DeleteAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertNull(tracker.findById(item.getId()));
     }
@@ -85,12 +81,9 @@ public class StartUITest {
         );
         MemTracker tracker = new MemTracker();
         List<UserAction> actions = new ArrayList<>();
-        actions.add(new ExitAction());
+        actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is(
-                "Menu:" + System.lineSeparator()
-                        + "0. Exit Program" + System.lineSeparator()
-                        + "=== Exit Program ===" + System.lineSeparator()
+        assertThat(out.toString(), is("=== Exit Program ===" + System.lineSeparator()
         ));
     }
 
@@ -105,19 +98,13 @@ public class StartUITest {
         );
         List<UserAction> actions = new ArrayList<>();
         actions.add(new ReplaceAction(out));
-        actions.add(new ExitAction());
+        actions.add(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
-                "Menu:" + ln
-                        + "0. Edit item" + ln
-                        + "1. Exit Program" + ln
-                        + "=== Edit item ===" + ln
-                        + "Заявка изменена успешно." + ln
-                        + "Menu:" + ln
-                        + "0. Edit item" + ln
-                        + "1. Exit Program" + ln
-                        + "=== Exit Program ===" + ln
+                "Заявка изменена успешно." + ln
+                + "=== Exit Program ===" + ln
+
         ));
     }
 
@@ -130,20 +117,13 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", "1"}
         );
-        List<UserAction> actions = List.of(new FindAllAction(out), new ExitAction());
+        List<UserAction> actions = List.of(new FindAllAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
-                "Menu:" + ln
-                        + "0. Show all items" + ln
-                        + "1. Exit Program" + ln
-                        + "=== Show all items ===" + ln
-                        + one + ln
+                one + ln
                         + two + ln
-                        + "Menu:" + ln
-                        + "0. Show all items" + ln
-                        + "1. Exit Program" + ln
-                        + "=== Exit Program ===" + ln
+                + "=== Exit Program ===" + ln
         ));
     }
 
@@ -155,19 +135,11 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", one.getName(), "1"}
         );
-        List<UserAction> actions = List.of(new FindByNameAction(out), new ExitAction());
+        List<UserAction> actions = List.of(new FindByNameAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
-                "Menu:" + ln
-                        + "0. Find items by name" + ln
-                        + "1. Exit Program" + ln
-                        + "=== Find items by name ===" + ln
-                        + one + ln
-                        + "Menu:" + ln
-                        + "0. Find items by name" + ln
-                        + "1. Exit Program" + ln
-                        + "=== Exit Program ===" + ln
+                one + ln + "=== Exit Program ===" + ln
         ));
     }
 
@@ -180,19 +152,12 @@ public class StartUITest {
                 new String[]{"0", String.valueOf(one.getId()), "1"}
         );
         List<UserAction> actions = List.of(new FindByIdAction(out),
-        new ExitAction());
+        new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
-                "Menu:" + ln
-                        + "0. Find item by id" + ln
-                        + "1. Exit Program" + ln
-                        + "=== Find item by id ===" + ln
-                        + one + ln
-                        + "Menu:" + ln
-                        + "0. Find item by id" + ln
-                        + "1. Exit Program" + ln
-                        + "=== Exit Program ===" + ln
+                one + ln
+                + "=== Exit Program ===" + ln
         ));
     }
 }

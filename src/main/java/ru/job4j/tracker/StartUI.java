@@ -15,6 +15,10 @@ public class StartUI {
         while (run) {
             showMenu(actions);
             int select = input.askInt("Enter select: ");
+            if (select < 0 || select >= actions.size()) {
+                out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
+                continue;
+            }
             UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
@@ -41,7 +45,7 @@ public class StartUI {
                     new FindAllAction(output),
                     new FindByIdAction(output),
                     new FindByNameAction(output),
-                    new ExitAction()
+                    new ExitAction(output)
             );
             new StartUI(output).init(input, tracker, actions);
         } catch (Exception e) {
