@@ -2,25 +2,24 @@ package ru.job4j.tracker;
 
 public class DeleteAction implements UserAction {
 
-    private final Output output;
+    private final Output out;
 
     public DeleteAction(Output output) {
-        this.output = output;
+        this.out = output;
     }
 
     @Override
     public String name() {
-        return "Delete item";
+        return "=== Delete item ====";
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
-        output.println("=== Delete item ===");
+    public boolean execute(Input input, Store tracker) {
         int id = input.askInt("Enter id: ");
         if (tracker.delete(id)) {
-            output.println("Заявка успешно удалена");
+            out.println("Заявка успешно удалена");
         } else {
-            output.println("Ошибка удаления заявки");
+            out.println("Ошибка удаления заявки");
         }
         return true;
     }
