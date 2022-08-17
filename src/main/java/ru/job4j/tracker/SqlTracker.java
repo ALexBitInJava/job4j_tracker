@@ -47,7 +47,7 @@ public class SqlTracker implements Store, AutoCloseable {
                     item.setId(resultSet.getInt(1));
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return item;
@@ -63,7 +63,7 @@ public class SqlTracker implements Store, AutoCloseable {
             preparedStatement.setTimestamp(2, timestamp);
             preparedStatement.setInt(3, id);
             rsl = preparedStatement.executeUpdate() > 0;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return rsl;
@@ -76,7 +76,7 @@ public class SqlTracker implements Store, AutoCloseable {
                 "delete from items where id = ?;")) {
             preparedStatement.setInt(1, id);
             rsl = preparedStatement.executeUpdate() > 0;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return rsl;
@@ -92,7 +92,7 @@ public class SqlTracker implements Store, AutoCloseable {
                     items.add(generateItem(resultSet));
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return items;
@@ -115,7 +115,7 @@ public class SqlTracker implements Store, AutoCloseable {
                     items.add(generateItem(resultSet));
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return items;
@@ -123,7 +123,7 @@ public class SqlTracker implements Store, AutoCloseable {
 
     @Override
     public Item findById(int id) {
-        Item item = new Item();
+        Item item = null;
         try (PreparedStatement preparedStatement = cn.prepareStatement(
                 "select * from items where id = ?;")) {
             preparedStatement.setInt(1, id);
@@ -132,7 +132,7 @@ public class SqlTracker implements Store, AutoCloseable {
                     item = generateItem(resultSet);
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return item;
